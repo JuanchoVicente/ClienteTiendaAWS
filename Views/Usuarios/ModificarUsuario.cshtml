@@ -1,0 +1,105 @@
+﻿@model Usuario
+
+<h1>Datos</h1>
+
+
+<div class="row" style="border: 3px double;">
+    <div class="col-6">
+        <form>
+            <input type="number" name="id" value="@Model.Id" hidden />
+            <label>Nombre</label>
+            <input type="text" name="unombre" value="@Model.Nombre"
+                   placeholder="@Model.Nombre" class="form-control" /><br />
+            <label>Edad</label>
+            <input type="number" name="uedad" value="@Model.Edad"
+                   placeholder="@Model.Edad" class="form-control" /><br />
+            <label>Salud</label>
+            <input type="text" name="usalud" value="@Model.Salud"
+                   placeholder="@Model.Salud" class="form-control" /><br />
+            <label>Hamburguesas favoritas</label>
+            <input type="text" name="ufhambur" value="@Model.FavsHamburguesas"
+                   placeholder="@Model.FavsHamburguesas" class="form-control" /><br />
+            <label>Aperitivos favoritos</label>
+            <input type="text" name="ufape" value="@Model.FavsAperitivos"
+                   placeholder="@Model.FavsAperitivos" class="form-control" /><br />
+            <label>Vinos favoritos</label>
+            <input type="text" name="ufvinos" value="@Model.FavsVinos"
+                   placeholder="@Model.FavsVinos" class="form-control" /><br />
+            <label>Cesta</label>
+            <input type="number" name="ucesta" value="@Model.Cesta"
+                   placeholder="@Model.Cesta" class="form-control" /><br />
+            <label>Telefono</label>
+            <input type="number" name="utelefono" value="@Model.Telefono"
+                   placeholder="@Model.Telefono" class="form-control" /><br />
+            <label>Corre</label>
+            <input type="text" name="ucorre" value="@Model.Correo"
+                   placeholder="@Model.Correo" class="form-control" /><br />
+            <label>Redes sociales</label>
+            <input type="text" name="urrss" value="@Model.RedesSociales"
+                   placeholder="@Model.RedesSociales" class="form-control" /><br />
+            <button type="submit" class="btn btn-success">
+                Modificar usuario
+            </button>
+        </form>
+
+    </div>
+    <div class="col-6">
+        <div class="col">
+            <div class="row">
+            <h1>Nombre: <b>@Model.Nombre</b></h1><br />
+            </div>
+            <div class="row">
+            <h4>Edad: <b>@Model.Edad</b></h4><br />
+            </div>
+            <div class="row">
+            <h4>Salud: <b>@Model.Salud</b></h4><br />
+            </div>
+            <div class="row">
+            <h3>Favoritos</h3><br />
+                <div class="col">
+                    <div class="row">
+                        <h5>Hamburguesas: <b>@Model.FavsHamburguesas</b></h5><br />
+                    </div>
+                    <div class="row">
+                        <h5>Aperitivos: <b>@Model.FavsAperitivos</b></h5><br />
+                    </div>
+                    <div class="row">
+                        <h5>Vinos: <b>@Model.FavsVinos</b></h5><br />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            <h4>Cesta:</h4> <p style="color:blue;">@Model.Cesta €</p><br />
+            </div>
+            <div class="row">
+            <h4>Telefono: <b>@Model.Telefono</b></h4><br />
+            </div>
+            <div class="row">
+            <h4>Correo: @Model.Correo</h4><br />
+            </div>
+            <div class="row">
+            <h4>RRSS: @Model.RedesSociales</h4><br />
+            </div>
+            <div class="row">
+            <h4>Rol: @Model.Rol</h4><br />
+            </div>
+        </div>
+        <h3>ACCIONES</h3>
+        <div class="col">
+            <form method="post">
+            <button type="submit" name="accion" value="close" class="btn btn-danger">Cerrar sesión</button>
+            <button type="submit" name="accion" value="fav" class="btn btn-info">Ir a favoritos</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<h2>@ViewData["FAVORITOS"]</h2>
+<h2>@ViewData["LOGOUT"]</h2>
+
+<a asp-action="ListaTatuajes" asp-controller="Tatuajes"
+   class="btn btn-secondary">
+    Lista tatus
+</a>
+
+

@@ -1,0 +1,16 @@
+﻿@model List<Material>
+<h1>Materiales</h1>
+
+@if(Model != null)
+{
+    <div class="row">
+
+    @foreach(Material m in Model)
+        {
+            <div class="col-3 p-1" style="border-radius:10px;">
+                <label>@m.Nombre</label>
+                <a class="btn btn-info" asp-action="DetallesMaterial" asp-controller="Materiales" asp-route-id="@m.Id">DETALLES</a>
+            </div>
+        }
+    </div>
+}

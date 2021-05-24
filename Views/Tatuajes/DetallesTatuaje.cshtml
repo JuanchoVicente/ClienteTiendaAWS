@@ -1,0 +1,141 @@
+﻿@model Tatuaje
+
+@{
+    List<int> precios = ViewData["PRECIOS"] as List<int>;
+    List<Tatuaje> tatuajesnom = ViewData["FILTRONOMBRE"] as List<Tatuaje>;
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#bologna-list a').on('click', function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+        });
+    </script>
+}
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#comentarios" role="tab" aria-controls="description" aria-selected="true">Comentarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#infoDetallada" role="tab" aria-controls="Detalles" aria-selected="false">Detalles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#busquedaTatu" role="tab" aria-controls="idTatu" aria-selected="false">Busquedas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#chat" role="tab" aria-controls="chat" aria-selected="true">Hablar con el tatuador</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">@Model.Nombre</h4>
+
+                    <div class="tab-content mt-3">
+                        <div class="tab-pane active" id="comentarios" role="tabpanel">
+                            <p class="card-text">El tatuaje de @Model.Autor</p>
+                            <p>Lista de comentarios</p>
+                        </div>
+
+                        <div class="tab-pane" id="infoDetallada" role="tabpanel" aria-labelledby="Detalles-tab">
+                            <p class="card-text">Descripcion del tatuaje @Model.Nombre, un tamaño de @Model.Tamaño cm y con un precio de @Model.Precio €</p>
+                            <h6 class="card-link mb-2">
+                                <a href="#" class="card-link text-dark">
+                                    Visitar enlace del tatuador
+                                </a>
+                            </h6>
+                        </div>
+
+                        <div class="tab-pane" id="busquedaTatu" role="tabpanel" aria-labelledby="idTatu-tab">
+                            <p class="card-text">El identificador para buscar el tatuaje es: <b>@Model.Id</b></p>
+                            <form method="post">
+                                <p class="card-text">
+                                    Listado de busquedas según disponibilidad:
+                                    <ol>
+                                        <li>
+                                            <input type="number" value="@Model.Id" name="id" hidden />
+                                            <label>Buscar por identificador</label>
+                                            <input type="number" placeholder="Id del tatuaje para buscar" name="idtatu"
+                                                   class="form-control" />
+                                            <button type="submit" value="bqduno" class="btn btn-success">Buscar</button>
+                                        </li>
+                                        <li>
+                                            <label>Buscar con el mismo nombre</label>
+                                            <input type="text" placeholder="Buscar por nombre" name="nombretatus"
+                                                   class="form-control" />
+                                            <button type="submit" value="bqddos" class="btn btn-success">Buscar</button>
+                                        </li>
+                                        <li>
+                                            <label for="precios-tatu">Buscar con el mismo precio: </label>
+                                            @if (precios != null)
+                                            {
+                                                <select name="precios" id="precios-tatu">
+                                                    @foreach (int p in precios)
+                                                    {
+                                                        <option value="@p">@p €</option>
+                                                    }
+                                                </select>
+                                            }
+                                            <input type="number" placeholder="Buscar por precio" name="preciostatu"
+                                                   class="form-control" />
+                                            <button type="submit" value="bqdtres" class="btn btn-success">Buscar</button>
+                                        </li>
+                                    </ol>
+                                </p>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane" id="chat" role="tabpanel" aria-labelledby="chat-tab">
+                            <p class="card-text">Hablar con @Model.Autor</p>
+                            <p class="card-text">Pendiente de implementar</p>
+                            
+                        </div>
+
+                    </div>
+                    <img class="card-img-bottom" src="@Model.Imagen" width="200" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    <div class="row">
+        <a asp-action="ListaTatuajes" asp-controller="Tatuajes"
+           class="btn btn-info">
+            Volver a la lista de los tatuajes
+        </a>
+    </div>
+
+    @if (tatuajesnom != null)
+    {
+        <table class="table" style="color:white
+    ; background-color:#595959">
+            <thead>
+                <tr>
+                    <th>NOMBRE</th>
+                    <th>TAMAÑO</th>
+                    <th>PRECIO</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Tatuaje t in tatuajesnom)
+                {
+                    <tr class="border-info">
+                        <td>@t.Nombre</td>
+                        <td>@t.Tamaño cm.</td>
+                        <td>@t.Precio €</td>
+                        <td><a class="btn btn-success" asp-action="DetallesTatuaje" 
+                               asp-controller="Tatuajes" asp-route-id="@t.Id">DETALLES</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }

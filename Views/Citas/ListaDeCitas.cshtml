@@ -1,0 +1,19 @@
+﻿@model List<Cita>
+
+@if (Model != null)
+{
+    <h2>Lista de citas</h2>
+    @foreach(Cita c in Model)
+    {
+        <div class="row">
+            <div>Nombre del tatuaje que se quiere realizar: @c.Tatuaje</div>
+            <div>Identificador del usuario: @c.IdUsuario</div>
+            <div>El tatuador es: @c.Tatuador</div>
+            <div>Comentarios: @c.Comentarios</div>
+        </div>
+    }
+}
+else 
+{
+    <h2>No hay citas disponibles</h2>
+}

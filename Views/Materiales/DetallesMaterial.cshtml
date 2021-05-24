@@ -1,0 +1,19 @@
+﻿@model Material
+
+@if (Model != null)
+{
+    <div>
+        <label><b>Nombre </b>@Model.Nombre</label><br />
+        <label><b>Categoria </b>@Model.Categoria</label><br />
+        <label><b>Precio </b>@Model.Precio €</label><br />
+        <label><b>Descripcion: </b>@Model.Descripcion</label><br />
+        <label><b>Imagen</b></label><br />
+        <img src="@Model.Imagen" width="100" />
+
+    </div>
+}
+<div>
+
+<a class="btn btn-success" asp-action="ListaMateriales"
+       asp-controller="Materiales">Volver</a>
+</div>

@@ -1,0 +1,22 @@
+﻿@model List<Tatuaje>
+
+<div class="row">
+    @foreach (Tatuaje t in Model)
+    {
+    <div class="col-3 p-1" style="border:5px solid black;">
+            <div class="text-white">
+                <div class="card border-dark">
+                    <div class="card-header bg-dark">
+                        <h4 class="card-title">@t.Nombre</h4>
+                    </div>
+                    <div class="card-body bg-primary ">
+                        <h5 class="card-subtitle mb-2">Autor: @t.Autor</h5>
+                        <a asp-controller="Tatuajes" asp-action="DetallesTatuaje"
+                           asp-route-id="@t.Id" class="card-link btn btn-primary text-white">Detalles</a>
+                    </div>
+                    <img class="card-img-bottom" src="@t.Imagen" style="max-height:600px;" alt="Bologna">
+                </div>
+            </div>
+        </div>
+    }
+</div>

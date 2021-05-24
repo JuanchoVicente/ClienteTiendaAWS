@@ -1,0 +1,32 @@
+﻿@model List<Usuario>
+ 
+@if(Model != null)
+{
+    @foreach(Usuario u in Model)
+    {
+    <div style="border:2px solid black;">
+        <p>Identificador: <strong>@u.Id</strong></p>
+        <p>Nombre: <strong>@u.Nombre</strong></p>
+        <h5>Favoritos</h5>
+        <div class="row">
+            <div class="col">
+        <p>Hamburguesas</p>
+                <p>@u.FavsHamburguesas</p>
+            </div>
+            <div class="col">
+                <p>Aperitivos</p>
+                <p>@u.FavsAperitivos</p>
+            </div>
+            <div class="col">
+                <p>Vinos</p>
+                <p>@u.FavsVinos</p>
+            </div>
+        </div>
+                <p>Tipo de usuario: @u.Rol</p>
+        <a asp-controller="Usuarios" asp-action="DetallesUsuario"
+            asp-route-id="@u.Id" class="btn btn-success">
+            Detalles
+        </a>
+    </div>
+    }
+}

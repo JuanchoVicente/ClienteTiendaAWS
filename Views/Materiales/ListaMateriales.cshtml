@@ -1,0 +1,31 @@
+﻿@model List<Material>
+
+@if (Model != null)
+{
+    <div class="row">
+        @foreach (Material m in Model)
+        {
+            <div class="col-3 p-1" style="border:5px solid black;">
+                <div class="text-white">
+                    <div class="card border-dark">
+                        <div class="card-header bg-dark">
+                            <h4 class="card-title">@m.Nombre</h4>
+                        </div>
+                        <div class="card-body bg-primary ">
+                            <h5 class="card-subtitle mb-2">Precio @m.Precio €</h5>
+                            <a asp-controller="Materiales" asp-action="DetallesMaterial"
+                               asp-route-id="@m.Id" class="card-link btn btn-primary text-white">Detalles</a>
+                        </div>
+                        <img class="card-img-bottom" src="@m.Imagen" style="max-height:600px;" alt="Bologna">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    }else {
+    <div>
+        <h1>No hay materiales disponibles</h1>
+        <a class="btn btn-success" asp-action="Index"
+            asp-controller="Materiales">Volver</a>
+    </div>
+    }

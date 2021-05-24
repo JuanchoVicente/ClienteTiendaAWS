@@ -1,0 +1,50 @@
+﻿@model List<Tatuaje>
+
+<h1>Lista de tatuajes</h1>
+@if (Model != null)
+{
+    <div class="row p-1" >
+        @foreach (Tatuaje t in Model)
+        {
+        <!-- Card deck -->
+        <div class="card-deck row">
+        <div class="col p-1" style="padding:5px;">                
+
+                <!-- Card -->
+                <div class="card">
+
+                    <!--Card image-->
+                    <div class="view overlay">
+                        <img class="card-img-top" src="@t.Imagen" alt="@t.Nombre">
+                        <a href="@t.Imagen">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+
+                    <!--Card content-->
+                    <div class="card-body">
+
+                        <!--Title-->
+                        <h4 class="card-title">@t.Nombre</h4>
+                        <!--Text-->
+                        <h4 class="card-text">El autor es @t.Autor</h4>
+                        <h4 class="card-text">El tamaño es @t.Tamaño</h4>
+
+                        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                        <a asp-controller="Tatuajes" asp-action="DetallesTatuaje" asp-route-id="@t.Id"
+                            class="btn btn-light-blue btn-md" style="font-size:xx-large">Detalles</a>
+
+                    </div>
+
+                </div>
+                <!-- Card -->
+            </div>                        
+        </div>
+        }
+    </div>
+}
+else
+{
+    <h3>No hay tatuajes disponibles</h3>
+}
+            

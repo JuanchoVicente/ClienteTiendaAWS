@@ -1,0 +1,14 @@
+﻿<h1>Logearse en la aplicacion</h1>
+<h1 style="color:red">
+    @ViewData["ErrorLogin"]
+</h1>
+<form method="post">
+    <label>Introducir nombre</label>
+    <input type="text" name="name" class="form-control" /><br />
+    <label>Introducir identificador</label>
+    <input type="number" name="id" class="form-control" /><br />
+    <button type="submit" class="btn btn-success">
+        Entrar como un usuario registrado
+    </button>
+</form>
+

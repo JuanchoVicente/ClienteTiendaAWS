@@ -1,0 +1,71 @@
+﻿@model Usuario
+@{
+    List<Tatuaje> tj = ViewData["TATUAJES"] as List<Tatuaje>;
+}
+@if (Model != null)
+{
+    <br />
+    <a class="btn btn-info" asp-action="ModificarUsuario" asp-controller="Usuarios"
+       asp-route-id="@Model.Id">
+        Ir al perfil
+    </a>
+    <br />
+    @if (Model.Rol == "administrador")
+    {
+        <h1>Pagina admin</h1>
+        <div class="row">
+            <h1>Administrar</h1>
+            <div class="col-4">Usuarios</div>
+            <div class="col-4">Tatuajes/Materiales</div>
+            <div class="col-4">Menus</div>
+        </div>
+    }
+    else if (Model.Rol == "tatuador")
+    {
+        <h1>Tatuador</h1>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary">Nuevo tatuaje</button>
+                <button class="btn btn-primary">Administrar pedidos</button>
+                <button class="btn btn-primary">Citas programadas</button>
+            </div>
+        </div>
+    }
+    else if (Model.Rol == "cliente")
+    {
+        <h3>lista de tatuajes y acciones de usuario</h3>
+
+        <div class="row" style="border:2px double;">
+            @if (tj != null)
+            {
+
+                @foreach (Tatuaje t in tj)
+                {
+                    <div class="col-4" style="align-self:center;">
+                        <label>Nombre: @t.Nombre</label><br />
+                        <label>Autor: @t.Autor</label><br />
+                        <label>@t.Precio €</label>
+                    </div>
+                    <div class="col-4" style="align-self:center;">
+                        <img src="@t.Imagen" alt="@t.Nombre" width="100" />
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-primary m-3">Hablar con @t.Autor</button>
+                        <button class="btn btn-primary m-3">Guardar en favoritos</button>
+                        <button class="btn btn-primary m-3">Entretenimiento</button>
+                    </div>
+                }
+            }
+        </div>
+    }
+    else
+    {
+        <h5>No tiene ningun rol asignado</h5>
+    }
+    <br />
+    <a asp-action="Index" asp-controller="Home"
+       class="btn btn-secondary">
+        Lista usuarios
+    </a>
+
+}
